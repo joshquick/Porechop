@@ -26,6 +26,8 @@ ScoredAlignment::ScoredAlignment(Align<Dna5String, ArrayGaps> & alignment,
     int alignmentStartPos = -1;
     bool readStarted = false;
     bool adapterStarted = false;
+    m_ref_alignment = readAlignment;
+    m_primer_alignment = adapterAlignment;
     for (int i = 0; i < alignmentLength; ++i) {
         if (readAlignment[i] != '-')
             readStarted = true;
@@ -111,11 +113,13 @@ ScoredAlignment::ScoredAlignment(Align<Dna5String, ArrayGaps> & alignment,
 }
 
 std::string ScoredAlignment::getString() {
-    return std::to_string(m_readStartPos) + "," + 
-           std::to_string(m_readEndPos) + "," + 
-           std::to_string(m_adapterStartPos) + "," + 
-           std::to_string(m_adapterEndPos) + "," + 
+    return std::to_string(m_readStartPos) + "," +
+           std::to_string(m_readEndPos) + "," +
+           std::to_string(m_adapterStartPos) + "," +
+           std::to_string(m_adapterEndPos) + "," +
            std::to_string(m_rawScore) + "," +
            std::to_string(m_alignedRegionPercentIdentity) + "," +
-           std::to_string(m_fullAdapterPercentIdentity);
+           std::to_string(m_fullAdapterPercentIdentity) + "," +
+           m_ref_alignment + "," +
+           m_primer_alignment;
 }

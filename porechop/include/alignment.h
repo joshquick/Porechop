@@ -25,6 +25,8 @@ public:
     int m_rawScore;
     double m_alignedRegionPercentIdentity;
     double m_fullAdapterPercentIdentity;
+    std::string m_ref_alignment;
+    std::string m_primer_alignment;
 };
 
 #endif // ALIGNMENT_H
